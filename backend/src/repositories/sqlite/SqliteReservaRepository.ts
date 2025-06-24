@@ -220,4 +220,24 @@ export class SqliteReservaRepository implements ReservaRepository {
 			throw new Error('Dados da reserva inválidos.')
 		})
 	}
+	async buscarReservasPorHorarioNoDia(data: string): Promise<Reserva[]>{
+		const rows = await this.db.all(
+			'SELECT * FROM Reserva WHERE data = ?',[data]
+		)
+				return rows.map((reserva) => {
+			if (isReserva(reserva)) {
+				return new Reserva({
+					id: reserva.id,
+					mesaId: reserva.mesaId,
+					nomeResponsavel: reserva.nomeResponsavel,
+					data: reserva.data,
+					hora: reserva.hora,
+					quantidadePessoas: reserva.quantidadePessoas,
+					status: reserva.status,
+					verify_by: reserva.verify_by,
+				})
+			}
+			throw new Error('Dados da reserva inválidos.')
+		})
+	}
 }

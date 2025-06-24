@@ -59,10 +59,20 @@
                   <input type="date" class="form-control" id="date" name="date" required />
                 </div>
                 <div class="mb-3">
-                  <label for="time" class="form-label">Horário</label>
-                  <input type="time" class="form-control" id="time" name="time" required />
+                  <label for="table" class="form-label">Horário</label>
+                  <select class="form-select" id="time" name="time" required>
+                    <option value="" disabled selected>Selecione o horário</option>
+                    <option>12:00</option>
+                    <option>13:30</option>
+                    <option>15:00</option>
+                    <option>16:30</option>
+                    <option>17:00</option>
+                    <option>18:30</option>
+                    <option>20:00</option>
+                    <option>21:30</option>
+                  </select>
                 </div>
-                <div class="mb-3">
+                <div>
                   <label for="table" class="form-label">Mesa</label>
                   <select class="form-select" id="table" name="table" required>
                     <option value="" disabled selected>Selecione a Mesa</option>

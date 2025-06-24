@@ -113,6 +113,7 @@ export class Reserva {
 		return nomeResponsavel
 	}
 
+
 	get id(): string {
 		return this._id
 	}
