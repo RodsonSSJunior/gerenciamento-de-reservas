@@ -1,11 +1,11 @@
 import type { RequestHandler } from 'express'
 import { z } from 'zod'
-import { ReservaExistsError } from '../../useCases/erros/ReservaExistsError'
 import { validateDataError } from '../../useCases/erros/validateDataError'
 import { validateHoraError } from '../../useCases/erros/validateHoraError'
 import { validateMesaError } from '../../useCases/erros/validateMesaError'
 import { validateNomeError } from '../../useCases/erros/validateNomeError'
 import { makeCriarReservaUseCase } from '../../useCases/factories/makeCriarReservaUseCase'
+import { validateHorarioError } from '../../useCases/erros/validateHorarioError'
 
 const bodySchema = z.object({
 	nomeResponsavel: z.string().min(1),
@@ -34,10 +34,11 @@ export const criarReservaController: RequestHandler = async (
 		res.status(201).json(reserva)
 		return
 	} catch (error) {
-		if (error instanceof ReservaExistsError) {
-			res.status(400).json({ error: error.message })
+		if (error instanceof validateHorarioError){
+			res.status(400).json({error: error.message})
 			return
 		}
+
 		if (error instanceof validateDataError) {
 			res.status(400).json({ error: error.message })
 			return
@@ -58,7 +59,6 @@ export const criarReservaController: RequestHandler = async (
 			res.status(400).json({ error: error.errors })
 			return
 		}
-
 		next(error)
 	}
 }
