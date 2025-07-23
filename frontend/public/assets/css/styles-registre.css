@@ -118,6 +118,7 @@ body {
 }
 
 .type h3 {
+	font-size: 25px;
 	display: flex;
 	width: 100%;
 	justify-content: center;
@@ -128,4 +129,5 @@ body {
 .type label input {
 	accent-color: #fff;
 	margin-right: 5px;
+	margin-bottom: 10px;
 }
