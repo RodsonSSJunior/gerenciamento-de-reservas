@@ -25,6 +25,11 @@ export async function createTableMesa() {
 		'CREATE TABLE IF NOT EXISTS Mesa (id INTEGER PRIMARY KEY, status TEXT)',
 	)
 }
+export async function createTableFuncionario() {
+	await getConnection().exec(
+		'CREATE TABLE IF NOT EXISTS Funcionario (id TEXT PRIMARY KEY NOT NULL, nome TEXT UNIQUE, email TEXT UNIQUE, senha TEXT, tipo TEXT)',
+	)
+}
 
 export async function createTableReserva() {
 	await getConnection().exec(
@@ -73,6 +78,7 @@ export async function configuratedb() {
 	await createTableGarcon()
 	await createTableMesa()
 	await createTableReserva()
+	await createTableFuncionario()
 	await insertMesas()
 	await insertGarcom()
 	if (env.NODE_ENV === 'test') {

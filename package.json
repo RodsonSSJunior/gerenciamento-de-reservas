@@ -15,14 +15,17 @@
 	"license": "ISC",
 	"description": "Sistema para reservas de um restaurante",
 	"dependencies": {
+		"bcrypt": "6.0.0",
 		"dotenv": "16.5.0",
 		"express": "^5.1.0",
 		"sqlite": "^5.1.1",
 		"sqlite3": "^5.1.7",
+		"unpkg": "0.2.0",
 		"zod": "3.24.4"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
+		"@types/bcrypt": "5.0.2",
 		"@types/express": "5.0.1",
 		"@types/node": "24.0.0",
 		"tsup": "8.4.0",
