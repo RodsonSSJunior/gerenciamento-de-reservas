@@ -18,7 +18,7 @@ export class SqliteFuncionarioRepository implements FuncionarioRepository {
 				funcionario.id,
 				funcionario.nome,
 				funcionario.email,
-				passwordHash,
+				funcionario.senha,
 				funcionario.tipo,
 			],
 		)
