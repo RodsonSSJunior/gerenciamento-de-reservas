@@ -5,6 +5,7 @@ import {
 	getRelatorioMesasConfirmadasPorGarcom,
 	getRelatorioReservasPorMesa,
 	getRelatorioReservasPorPeriodo,
+	criarFuncionario,
 } from './api.js'
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -321,4 +322,34 @@ async function exibirRelatorioReservasPorMesa(mesaId) {
 		feedback.innerHTML =
 			'<div class="alert alert-danger">Erro ao buscar reservas da mesa.</div>'
 	}
+	document.addEventListener('DOMContentLoaded', () => {
+		const form = document.getElementById('funcionarioForm')
+		const mensagem = document.getElementById('mensagem')
+
+		form.addEventListener('submit', async (event) => {
+			event.preventDefault()
+
+			const name = document.getElementById('name').value
+			const email = document.getElementById('email').value
+			const senha = document.getElementById('senha').value
+			const tipo = document.getElementById('tipo').value
+
+			const newFuncionario = {
+				nome: name,
+				email: email,
+				senha: senha,
+				tipo: tipo,
+			}
+
+			try {
+				await criarFuncionario(newFuncionario)
+				mensagem.textContent = 'Funcionário registrado com sucesso!'
+				mensagem.style.color = 'green'
+				form.reset() // limpa os campos
+			} catch (error) {
+				mensagem.textContent = `Erro: ${error.message}`
+				mensagem.style.color = 'red'
+			}
+		})
+	})
 }

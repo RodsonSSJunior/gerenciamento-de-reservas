@@ -6,35 +6,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel="stylesheet" href="assets/css/styles-registre.css">
+  <script>
+    function redirecionar() {
+      window.location.href = "login.html";
+    }
+  </script>
   <title>Cadastro</title>
 </head>
 
 <body>
   <main class="container">
-    <form>
+    <form id="funcionarioForm">
       <h1>Cadastro 404</h1>
       <div class="input-box">
-        <input placeholder="Nome" type="text" required>
+        <input placeholder="Nome" type="text" id="name" required>
         <i class="bx bxs-user"></i>
       </div>
 
       <div class="input-box">
-        <input placeholder="Email" type="email" required>
+        <input placeholder="Email" type="email" id="email" required>
         <i class="bx bxs-user"></i>
       </div>
 
       <div class="input-box">
-        <input placeholder="Senha" type="password" required>
+        <input placeholder="Senha" type="password" id="senha" required>
         <i class="bx bxs-lock-alt"></i>
       </div>
 
       <div class="type">
-        <h3>Tipo</h3>
-        <label>
-          <input type="radio" name="tipo" value="atendente"> Atendente<br>
-          <input type="radio" name="tipo" value="garcom"> Garçom<br>
-          <input type="radio" name="tipo" value="gerente"> Gerente
-        </label>
+        <select class="tipos" id="tipo" required>
+          <option value="" disabled selected>Selecione o tipo de funcionário</option>
+          <option type="radio" value="atendente"> Atendente<br>
+          <option type="radio" value="garcom"> Garçom<br>
+          <option type="radio" value="gerente"> Gerente
+        </select>
       </div>
 
       <button type="submit" class="login">Cadastrar</button>
@@ -45,6 +50,8 @@
 
     </form>
   </main>
+  <script src="./js/cadastro.js">
+  </script>
 </body>
 
 </html>

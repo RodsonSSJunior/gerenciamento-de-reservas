@@ -117,17 +117,14 @@ body {
 	text-decoration: underline;
 }
 
-.type h3 {
-	font-size: 25px;
-	display: flex;
+.tipos {
 	width: 100%;
-	justify-content: center;
-	align-items: center;
-	margin-bottom: 5px;
-}
-
-.type label input {
-	accent-color: #fff;
-	margin-right: 5px;
-	margin-bottom: 10px;
+	height: 100%;
+	background: transparent;
+	border-radius: 20px;
+	border: 2px solid rgba(255, 255, 255, 0.2);
+	outline: none;
+	font-size: 16px;
+	color: #fff;
+	padding: 10px 22px 10px 20px;
 }

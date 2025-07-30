@@ -17,6 +17,26 @@ export async function criarReserva(reserva) {
 	return response.json()
 }
 
+export async function criarFuncionario(funcionario) {
+	try {
+		const response = await fetch('/api/criarFuncionario', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(funcionario),
+		})
+		if (!response.ok) {
+			const errorData = await response.json()
+			throw new Error(errorData.error)
+		}
+		return response.json()
+	} catch (error) {
+		console.error('Erro ao criar funcionário:', error)
+		throw error
+	}
+}
+
 export async function atualizarStatusReserva(id, status, garcomId) {
 	const response = await fetch(`/api/reservas/${id}`, {
 		method: 'PATCH',
