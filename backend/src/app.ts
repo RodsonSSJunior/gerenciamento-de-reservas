@@ -8,6 +8,7 @@ import { reservasRouter } from './routes/reservas.routes'
 import { gerenteRouter } from './routes/gerente.routes'
 import { garconsRouter } from './routes/garcons.routes'
 import { mesasRouter } from './routes/mesas.routes'
+import { funcionariosRouter } from './routes/funcionarios.routes'
 
 const setup = async () => {
 	const app = express()
@@ -20,6 +21,7 @@ const setup = async () => {
 	app.use('/api', gerenteRouter)
 	app.use('/api', garconsRouter)
 	app.use('/api', mesasRouter)
+	app.use('/api', funcionariosRouter)
 	app.use(<ErrorRequestHandler>((err, _req, res, next) => {
 		if (err instanceof ZodError) {
 			res

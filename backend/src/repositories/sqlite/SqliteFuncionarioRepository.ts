@@ -47,15 +47,21 @@ export class SqliteFuncionarioRepository implements FuncionarioRepository {
 		return hashpassword
 	}
 
-	async verifyPasswordByUser(email: string, senha: string): Promise<boolean> {
+	async find(email: string, senha: string): Promise<Funcionario> {
 		const funcionario = await this.db.get(
 			'SELECT * FROM Funcionario WHERE email = ?',
 			[email],
 		)
 		const isValid = await bcrypt.compare(senha, funcionario.senha)
 		if (!isValid) {
-			throw new Error('Senha inválida.')
+			throw new Error('Usuário ou Senha incorreto.')
 		}
-		return isValid
+		return new Funcionario({
+			id: funcionario.id,
+			nome: funcionario.nome,
+			email: funcionario.email,
+			senha: funcionario.senha,
+			tipo: funcionario.tipo,
+		})
 	}
 }

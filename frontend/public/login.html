@@ -11,25 +11,17 @@
 
 <body>
   <main class="container">
-    <form>
+    <form id="form-login">
       <h1>Login 404</h1>
       <div class="input-box">
-        <input placeholder="Email" type="email" required>
+        <input placeholder="Email" type="email" id="email" required>
         <i class="bx bxs-user"></i>
       </div>
       <div class="input-box">
-        <input placeholder="Senha" type="password" required>
-        <i class="bx bxs-lock-alt"></i>
-      </div>
+        <input placeholder="Senha" type="password" id="senha" required>
+        <i class="bx bxs-show" onclick="mostrarSenha()"></i>
 
-      <div class="remember-forgot">
-        <label>
-          <input type="checkbox">
-          Lembrar a senha
-        </label>
-        <a href="#">Esqueci a senha</a>
       </div>
-
       <button type="submit" class="login">Login</button>
 
       <div class="register-link">
@@ -38,6 +30,7 @@
 
     </form>
   </main>
+  <script src="./js/login.js"></script>
 </body>
 
 </html>
