@@ -36,6 +36,6 @@ export class SqliteFuncionarioRepository implements FuncionarioRepository {
 				tipo: funcionarioCriado.tipo,
 			})
 		}
-		throw new Error('Dados da reserva inválidos.')
+		throw new Error('Dados do funcionário inválidos.')
 	}
 }

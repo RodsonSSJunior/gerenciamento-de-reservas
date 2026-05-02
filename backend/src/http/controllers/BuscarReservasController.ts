@@ -14,10 +14,14 @@ export const buscarReservasController: RequestHandler = async (
 		res.status(200).json({ reservas })
 		return
 	} catch (error) {
-		if (error instanceof BuscarReservasError) {
-			res.status(400).json({ error: error.message })
-			return
-		}
-		next(error)
-	}
+        if (error instanceof BuscarReservasError) {
+            res.status(400).json({ error: error.message })
+            return
+        }
+        
+       
+        console.error(" ERRO NO CONTROLLER DE RESERVAS:", error);
+        
+        next(error)
+    }
 }

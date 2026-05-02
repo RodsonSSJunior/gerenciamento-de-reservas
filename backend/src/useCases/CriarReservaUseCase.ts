@@ -48,13 +48,17 @@ export class CriarReservaUseCase {
 		status,
 		verify_by,
 	}: CriarReservaRequest): Promise<CriarReservaResponse> {
-		const mesaExistente = await this.mesaRepository.findById(mesaId)
 		const reservas = await this.reservaRepository.buscarReservasPorHorarioNoDia(data)
 		
-		for (const reserva of reservas) {
-			if(hora === reserva.hora && reserva.status === 'aguardando' || reserva.status === 'confirmada')
-				throw new validateHorarioError()
-		}
+for (const reserva of reservas) {
+  const mesmaMesa = reserva.mesaId === mesaId
+  const mesmaHora = reserva.hora === hora
+  const statusBloqueante = reserva.status === 'aguardando' || reserva.status === 'confirmada'
+
+  if (mesmaMesa && mesmaHora && statusBloqueante) {
+    throw new validateHorarioError()
+  }
+}
 		
 		const reservaCriada = await this.reservaRepository.create(
 			new Reserva({

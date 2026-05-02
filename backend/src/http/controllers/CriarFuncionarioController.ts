@@ -7,7 +7,7 @@ const tipoFuncionario = z.enum(['gerente', 'garcom', 'atendente'])
 
 const bodySchema = z.object({
 	nome: z.string(),
-	email: z.string(),
+	email: z.string().email(),
 	senha: z.string(),
 	tipo: tipoFuncionario,
 })

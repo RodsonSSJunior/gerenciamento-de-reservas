@@ -18,7 +18,7 @@ interface BuscarReservasResponse {
 export class BuscarReservasUseCase {
 	constructor(private reservaRepository: ReservaRepository) {}
 	async execute(): Promise<BuscarReservasResponse> {
-		const reservas = await this.reservaRepository.findAll()
+		const reservas = await this.reservaRepository.findAll() || []
 		return {
 			reservas: reservas.map((reserva) => ({
 				id: reserva.id,
