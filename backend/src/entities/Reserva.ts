@@ -43,10 +43,6 @@ export class Reserva {
 		status,
 		verify_by,
 	}: ReservaRequest) {
-		if (quantidadePessoas <= 0) {
-			throw new validateQuantidadePessoasError()
-		}
-
 		if (status) {
 			this._status = status
 		}
@@ -95,7 +91,7 @@ export class Reserva {
 	}
 
 	private validateQuantidadePessoas(quantidadePessoas: number): number {
-		if (quantidadePessoas <= 0) {
+		if (quantidadePessoas <= 0 || quantidadePessoas > 12) {
 			throw new validateQuantidadePessoasError()
 		}
 
@@ -107,7 +103,7 @@ export class Reserva {
 
 	private validateNome(nomeResponsavel: string): string {
 		const regex = /^[A-Za-zÀ-ÖØ-öø-ÿ'\-]+(?: [A-Za-zÀ-ÖØ-öø-ÿ'\-]+)*$/
-		if (!regex.test(nomeResponsavel)) {
+		if (!regex.test(nomeResponsavel) || nomeResponsavel.length > 80) {
 			throw new validateNomeError()
 		}
 		return nomeResponsavel
