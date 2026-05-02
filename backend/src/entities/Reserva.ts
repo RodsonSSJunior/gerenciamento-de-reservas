@@ -103,7 +103,7 @@ export class Reserva {
 
 	private validateNome(nomeResponsavel: string): string {
 		const regex = /^[A-Za-zÀ-ÖØ-öø-ÿ'\-]+(?: [A-Za-zÀ-ÖØ-öø-ÿ'\-]+)*$/
-		if (!regex.test(nomeResponsavel) || nomeResponsavel.length > 80) {
+		if (!regex.test(nomeResponsavel) || nomeResponsavel.length > 100) {
 			throw new validateNomeError()
 		}
 		return nomeResponsavel
