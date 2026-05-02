@@ -3,7 +3,7 @@ import { Reserva } from '../entities/Reserva'
 import type { StatusReserva } from '../entities/Reserva'
 import type { ReservaRepository } from '../repositories/ReservaRepository'
 import type { MesaRepository } from '../repositories/MesaRepository'
-import { ReservaExistsError } from './erros/ReservaExistsError'
+import { validateHorarioError } from './erros/validateHorarioError'
 
 interface CriarReservaRequest {
 	mesaId: number
@@ -48,10 +48,18 @@ export class CriarReservaUseCase {
 		status,
 		verify_by,
 	}: CriarReservaRequest): Promise<CriarReservaResponse> {
-		const mesaExistente = await this.mesaRepository.findById(mesaId)
-		if (mesaExistente.status === 'ocupada') {
-			throw new ReservaExistsError()
-		}
+		const reservas = await this.reservaRepository.buscarReservasPorHorarioNoDia(data)
+		
+for (const reserva of reservas) {
+  const mesmaMesa = reserva.mesaId === mesaId
+  const mesmaHora = reserva.hora === hora
+  const statusBloqueante = reserva.status === 'aguardando' || reserva.status === 'confirmada'
+
+  if (mesmaMesa && mesmaHora && statusBloqueante) {
+    throw new validateHorarioError()
+  }
+}
+		
 		const reservaCriada = await this.reservaRepository.create(
 			new Reserva({
 				id: randomUUID(),

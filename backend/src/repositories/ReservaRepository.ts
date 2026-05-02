@@ -12,4 +12,5 @@ export interface ReservaRepository {
 	findById(id: string): Promise<Reserva | null>
 	update(id: string, reserva: Reserva): Promise<Reserva>
 	findAll(): Promise<Reserva[]>
+	buscarReservasPorHorarioNoDia(data: string): Promise<Reserva[]>
 }
